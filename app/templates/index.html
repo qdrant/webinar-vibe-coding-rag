@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <div class="card bg-base-100 shadow-xl">
+        <div class="card-body">
+            <h2 class="card-title">Process YouTube Video</h2>
+            <p class="text-gray-600 mb-4">Enter a YouTube URL to process its transcript for searching</p>
+            
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">Enter YouTube URL</span>
+                </label>
+                <div class="join w-full">
+                    <input type="text" id="youtube-url" placeholder="https://www.youtube.com/watch?v=..." class="input input-bordered join-item w-full" />
+                    <button id="process-button" class="btn btn-primary join-item">Process</button>
+                </div>
+            </div>
+            
+            <div class="mt-4" id="process-status">
+                <!-- Processing status messages will appear here -->
+            </div>
+            
+            <div class="divider">OR</div>
+            
+            <h3 class="font-bold mb-2">Example Videos</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+                <button class="btn btn-outline btn-accent btn-sm example-video w-full h-auto" data-url="https://www.youtube.com/watch?v=zjkBMFhNj_g">
+                    <div class="flex items-center w-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span class="truncate text-left">Intro to Large Language Models</span>
+                    </div>
+                </button>
+                <button class="btn btn-outline btn-accent btn-sm example-video w-full h-auto" data-url="https://www.youtube.com/watch?v=7xTGNNLPyMI">
+                    <div class="flex items-center w-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span class="truncate text-left">Deep Dive into LLMs like ChatGPT</span>
+                    </div>
+                </button>
+                <button class="btn btn-outline btn-accent btn-sm example-video w-full h-auto" data-url="https://www.youtube.com/watch?v=EWvNQjAaOHw">
+                    <div class="flex items-center w-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span class="truncate text-left">How I use LLMs</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card bg-base-100 shadow-xl mt-6 hidden" id="recently-processed">
+        <div class="card-body">
+            <h2 class="card-title">Recently Processed Videos</h2>
+            <div class="mt-4">
+                <!-- Video carousel with navigation arrows -->
+                <div class="flex items-center gap-2">
+                    <!-- Left arrow navigation -->
+                    <div class="hidden md:block" id="carousel-prev">
+                        <button class="btn btn-circle btn-primary btn-disabled">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <!-- Carousel content -->
+                    <div class="carousel carousel-center rounded-box w-full p-2 overflow-x-auto">
+                        <div id="video-list" class="flex space-x-4 items-stretch">
+                            <!-- Video cards will be populated here as carousel items -->
+                        </div>
+                    </div>
+                    
+                    <!-- Right arrow navigation -->
+                    <div class="hidden md:block" id="carousel-next">
+                        <button class="btn btn-circle btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', path='/js/index.js') }}"></script>
+{% endblock %}

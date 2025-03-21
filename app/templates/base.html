@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.7.3/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header/Navbar -->
+    <div class="navbar bg-base-200 shadow-md">
+        <div class="navbar-start">
+            <a href="/" class="btn btn-ghost text-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+                In-Video Search
+            </a>
+        </div>
+        <div class="navbar-center">
+            <div class="form-control">
+                <div class="join">
+                    <input type="text" id="global-search" placeholder="Search videos..." class="input input-bordered join-item w-full md:w-96" />
+                    <button id="global-search-button" class="btn btn-primary join-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-end">
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                </div>
+                <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                    <li><button class="theme-item" data-theme="light">Light</button></li>
+                    <li><button class="theme-item" data-theme="dark">Dark</button></li>
+                    <li><button class="theme-item" data-theme="cupcake">Cupcake</button></li>
+                    <li><button class="theme-item" data-theme="synthwave">Synthwave</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 flex-grow">
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer p-10 bg-base-200 text-base-content">
+        <div>
+            <span class="footer-title">In-Video Search</span>
+            <p>Powered by Qdrant & FastAPI</p>
+            <p>Search through video content semantically</p>
+        </div>
+        <div>
+            <span class="footer-title">Recent Videos</span>
+            <div id="footer-recent-videos">
+                <!-- Recent videos will be loaded here by JavaScript -->
+                <p class="text-sm opacity-70">No recent videos</p>
+            </div>
+        </div>
+        <div>
+            <span class="footer-title">Resources</span>
+            <a class="link link-hover" href="https://qdrant.tech/" target="_blank">Qdrant</a>
+            <a class="link link-hover" href="https://fastapi.tiangolo.com/" target="_blank">FastAPI</a>
+            <a class="link link-hover" href="https://daisyui.com/" target="_blank">DaisyUI</a>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="{{ url_for('static', path='/js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

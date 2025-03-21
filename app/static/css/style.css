@@ -1,0 +1,137 @@
+/* Custom styles */
+
+/* Video Carousel */
+.carousel-item {
+    scroll-snap-align: center;
+}
+
+/* Make carousel items responsive but maintain minimum width */
+@media (max-width: 640px) {
+    .carousel-item {
+        min-width: 200px;
+    }
+}
+
+@media (min-width: 640px) {
+    .carousel-item {
+        min-width: 250px;
+    }
+}
+
+/* Carousel container - don't let arrows overlap content */
+.carousel {
+    overflow-x: hidden;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+}
+
+.carousel::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari/Opera */
+}
+
+/* Navigation arrow styles */
+.btn-circle.btn-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Video card styling - ensure proper structure */
+.carousel-item .card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.carousel-item .card figure {
+    width: 100%;
+    flex: 0 0 auto;
+}
+
+.carousel-item .card .card-body {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Transcript container */
+.transcript-container {
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 1rem;
+}
+
+/* Transcript segments */
+.transcript-segment {
+    padding: 0.625rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    background-color: var(--base-200, #f3f4f6);
+}
+
+.transcript-segment:hover {
+    background-color: var(--base-300, #e5e7eb);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.transcript-segment.highlight {
+    background-color: var(--primary-focus, rgba(59, 130, 246, 0.2));
+    border-left: 3px solid var(--primary, #3b82f6);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.transcript-segment.hidden-segment {
+    display: none;
+}
+
+/* Timestamp */
+.timestamp {
+    display: inline-block;
+    background-color: var(--neutral, #e5e7eb);
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: var(--neutral-content, #4b5563);
+    margin-right: 0.5rem;
+}
+
+/* Score badge */
+.score-badge {
+    display: inline-block;
+    background-color: var(--primary, #3b82f6);
+    color: var(--primary-content, white);
+    border-radius: 9999px;
+    padding: 0.125rem 0.5rem;
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+}
+
+/* Search result */
+.search-result {
+    transition: all 0.2s ease;
+}
+
+.search-result:hover {
+    transform: translateY(-2px);
+}
+
+/* Metadata tags */
+.metadata-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+}
+
+.metadata-tag {
+    font-size: 0.7rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 9999px;
+    background-color: var(--accent, #d8b4fe);
+    color: var(--accent-content, #581c87);
+    white-space: nowrap;
+}
