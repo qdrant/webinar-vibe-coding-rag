@@ -23,7 +23,7 @@ RUN poetry install --no-dev --no-interaction --no-ansi
 COPY app ./app
 
 # Expose port
-EXPOSE 8000
+EXPOSE 7860
 
 # Set environment variables
 ENV PYTHONPATH=/app

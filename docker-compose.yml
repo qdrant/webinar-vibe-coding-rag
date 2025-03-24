@@ -4,7 +4,7 @@ services:
   app:
     build: .
     ports:
-      - "8000:8000"
+      - "7860:7860"
     environment:
       - QDRANT_URL=http://qdrant:6333
       - WORKERS=4  # Set number of workers
@@ -13,7 +13,7 @@ services:
       - qdrant
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      test: ["CMD", "curl", "-f", "http://localhost:7860/"]
       interval: 30s
       timeout: 10s
       retries: 3

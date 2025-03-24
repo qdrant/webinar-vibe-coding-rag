@@ -12,8 +12,8 @@ else:
 # Use Uvicorn worker class for ASGI support
 worker_class = "uvicorn.workers.UvicornWorker"
 
-# Bind to 0.0.0.0:8000
-bind = "0.0.0.0:8000"
+# Bind to 0.0.0.0:7860
+bind = "0.0.0.0:7860"
 
 # Logging
 accesslog = "-"  # Log to stdout
