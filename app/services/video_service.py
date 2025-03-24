@@ -1,3 +1,4 @@
+import os
 import uuid
 from typing import List, Dict, Any, Optional
 import re
@@ -5,6 +6,7 @@ from datetime import datetime
 from sentence_transformers import SentenceTransformer
 from qdrant_client.http import models
 from youtube_transcript_api import YouTubeTranscriptApi
+from youtube_transcript_api.proxies import WebshareProxyConfig
 import yt_dlp
 from app.models.video import VideoSegment, Video, SearchResult
 from app.services.qdrant_service import qdrant_client
@@ -171,7 +173,18 @@ def get_video_transcript(video_id: str) -> List[Dict[str, Any]]:
 
     try:
         # Try to get available transcript languages
-        transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
+        webshare_username = os.environ.get("WEBSHARE_USERNAME")
+        webshare_password = os.environ.get("WEBSHARE_PASSWORD")
+        if webshare_username and webshare_password:
+            yt_transcript_api = YouTubeTranscriptApi(
+                proxy_config=WebshareProxyConfig(
+                    proxy_username=webshare_username,
+                    proxy_password=webshare_password,
+                )
+            )
+        else:
+            yt_transcript_api = YouTubeTranscriptApi()
+        transcript_list = yt_transcript_api.list(video_id)
 
         # First, look for English transcript
         english_transcript = None
