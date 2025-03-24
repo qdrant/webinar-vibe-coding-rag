@@ -1,3 +1,14 @@
+---
+title: "Qdrant Webinar: Vibe Coding Rag"
+emoji: 🏆
+colorFrom: pink
+colorTo: indigo
+sdk: docker
+pinned: false
+license: apache-2.0
+short_description: YouTube In-Video Search
+---
+
 # webinar-vibe-coding-rag
 
 **This repository contains materials for the hands-on "[Letting LLMs Write RAG 
