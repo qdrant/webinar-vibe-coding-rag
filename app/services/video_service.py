@@ -10,7 +10,7 @@ from app.models.video import VideoSegment, Video, SearchResult
 from app.services.qdrant_service import qdrant_client
 
 # Initialize the sentence transformer model
-model = SentenceTransformer("sentence-transformers/static-retrieval-mrl-en-v1")
+model = SentenceTransformer("sentence-transformers/static-retrieval-mrl-en-v1", cache_folder="/tmp")
 
 # Collection names
 COLLECTION_NAME = "video_segments"
