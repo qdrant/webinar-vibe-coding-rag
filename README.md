@@ -11,6 +11,8 @@ short_description: YouTube In-Video Search
 
 # webinar-vibe-coding-rag
 
+[![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/Qdrant/webinar-vibe-coding-rag)|
+
 **This repository contains materials for the hands-on "[Letting LLMs Write RAG 
 Applications](https://try.qdrant.tech/llm-rag)" webinar.**
 
