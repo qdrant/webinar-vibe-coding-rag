@@ -1,3 +1,5 @@
+from typing import Any
+
 from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -5,6 +7,8 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from app.api import router as api_router
 from app.services.video_service import get_video_by_id
+from jinja2 import pass_context
+from starlette.datastructures import URL
 
 app = FastAPI(title="In-Video Search", docs_url=None, redoc_url=None, openapi_url=None)
 
@@ -22,6 +26,15 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 # Templates
 templates = Jinja2Templates(directory="app/templates")
+
+
+@pass_context
+def https_url_for(context: dict, name: str, **path_params: Any) -> URL:
+    request: Request = context["request"]
+    url: URL = request.url_for(name, **path_params)
+    return url.replace(scheme="https")
+
+templates.env.globals["https_url_for"] = https_url_for
 
 
 @app.get("/", response_class=HTMLResponse)
